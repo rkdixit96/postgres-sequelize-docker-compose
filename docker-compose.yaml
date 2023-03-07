@@ -21,7 +21,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      NODE_ENV: docker
+      DB_USER: user
 
   migration:
     build:
@@ -30,4 +30,8 @@ services:
       args:
         - no_cache=1
     environment:
-      NODE_ENV: docker
+      DB_USER: user
+      DB_PASSWORD: password
+      DB_HOST: database
+      DB_PORT: 5432
+      DB_NAME: demo

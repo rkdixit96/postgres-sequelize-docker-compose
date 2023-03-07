@@ -1,18 +1,10 @@
 module.exports = {
-  docker: {
-    username: 'user',
-    password: 'password',
-    database: 'demo',
-    host: 'database',
+  development: {
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
     dialect: 'postgres',
-    port: 5432,
-  },
-  migration: {
-    username: 'user',
-    password: 'password',
-    database: 'demo',
-    host: '127.0.0.1',
-    dialect: 'postgres',
-    port: 5433,
+    port: process.env.DB_PORT,
   },
 };
