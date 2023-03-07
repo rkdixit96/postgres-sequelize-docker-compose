@@ -1,0 +1,33 @@
+# Node js server and postgres
+version: "3"
+services:
+  database:
+    image: postgres
+    container_name: database
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: user
+      POSTGRES_DB: demo
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./database/data:/var/lib/postgresql/data
+    
+  server:
+    build:
+      context: .
+      args:
+        - no_cache=1
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: docker
+
+  migration:
+    build:
+      context: .
+      dockerfile: Dockerfile.migration
+      args:
+        - no_cache=1
+    environment:
+      NODE_ENV: docker
